@@ -47,10 +47,10 @@
 
                     <ul class="list-group list-group-flush">
                         <a href="cadAdm.html">
-                            <li class="list-group-item">Cad Adm</li>
+                            <li class="list-group-item">Cad Adiministrador</li>
                         </a>
                         <a href="listAdm.php">
-                            <li class="list-group-item">List Adm</li>
+                            <li class="list-group-item">List Adiministrador</li>
                         </a>
                     </ul>
 
