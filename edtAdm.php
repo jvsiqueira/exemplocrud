@@ -25,6 +25,13 @@
         }
     </style>
 </head>
+<?php
+session_start();
+if (!$_SESSION["loginUsuario"]) {
+    header("Location: login.php");
+}
+
+?>
 
 <body>
     <nav class="navbar navbar-light bg-light shadow">
@@ -46,11 +53,23 @@
                 <div class="modal-body">
 
                     <ul class="list-group list-group-flush">
-                        <a href="cadAdm.html">
-                            <li class="list-group-item">Cad Adm</li>
+                        <a href="index.php">
+                            <li class="list-group-item">Inicio</li>
+                        </a>
+                        <a href="cadAdm.php">
+                            <li class="list-group-item">Cad Adiministrador</li>
+                        </a>
+                        <a href="cadAluno.php">
+                            <li class="list-group-item">Cad Aluno</li>
                         </a>
                         <a href="listAdm.php">
-                            <li class="list-group-item">List Adm</li>
+                            <li class="list-group-item">List Adiministrador</li>
+                        </a>
+                        <a href="listAluno.php">
+                            <li class="list-group-item">List Aluno</li>
+                        </a>
+                        <a href="#">
+                            <li class="list-group-item" onclick="sair()">Log Out</li>
                         </a>
                     </ul>
 

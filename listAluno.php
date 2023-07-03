@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Adm</title>
+    <title>List Aluno</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-utilities.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -78,20 +78,24 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Login</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Matricula</th>
+                <th scope="col">Adicionado Por</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/EXEMPLO/NEGOCIO/ADM/admNegocio.php';
-            AdmNegocio::listAdm();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/EXEMPLO/NEGOCIO/ALUNO/alunoNegocio.php';
+            AlunoNegocio::listaTodos();
             ?>
-
         </tbody>
     </table>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="js/utili.js"></script>
+    <script src="js/listAluno.js"></script>
+
 </body>
 
 </html>

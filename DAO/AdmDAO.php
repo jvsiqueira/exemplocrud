@@ -63,6 +63,30 @@ class AdmDAO
 
         return $lista;
     }
+    static function login($dados)
+    {
+        global $con;
+        try {
+            $consulta = $con->prepare("SELECT * FROM adm WHERE login = ? AND senha = ?");
+            $consulta->bindParam(1, $dados->login);
+            $consulta->bindParam(2, $dados->senha);
+            $adm = new AdmVO();
+            if ($consulta->execute()) {
+                if ($consulta->rowCount() > 0) {
+                    while ($row = $consulta->fetch(PDO::FETCH_OBJ)) {
+                        $adm->setId($row->id);
+                        $adm->setLogin($row->login);
+                        $adm->setSenha($row->senha);
+                    }
+                    return $adm;
+                } else {
+                    return 0;
+                }
+            }
+        } catch (PDOException $exception) {
+            echo 'ERROR: ' . $exception->getMessage();
+        }
+    }
     static function delete($id)
     {
         global $con;

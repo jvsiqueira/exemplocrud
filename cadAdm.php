@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Adm</title>
+    <title>Cad Adm</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-utilities.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-utilities.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
 
     <style>
@@ -25,6 +26,13 @@
         }
     </style>
 </head>
+<?php
+session_start();
+if (!$_SESSION["loginUsuario"]) {
+    header("Location: login.php");
+}
+
+?>
 
 <body>
     <nav class="navbar navbar-light bg-light shadow">
@@ -44,7 +52,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <ul class="list-group list-group-flush">
                         <a href="index.php">
                             <li class="list-group-item">Inicio</li>
@@ -72,26 +79,28 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Digite seu email</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+        </form>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Login</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/EXEMPLO/NEGOCIO/ADM/admNegocio.php';
-            AdmNegocio::listAdm();
-            ?>
-
-        </tbody>
-    </table>
+    <button class="btn btn-primary" onclick="salvaAdm()">Cadastrar</button>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="js/utili.js"></script>
+    <script src="js/cadAdm.js"></script>
+
 </body>
 
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cad Adm</title>
+    <title>Cad Aluno</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-utilities.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -26,6 +26,13 @@
         }
     </style>
 </head>
+<?php
+session_start();
+if (!$_SESSION["loginUsuario"]) {
+    header("Location: login.php");
+}
+
+?>
 
 <body>
     <nav class="navbar navbar-light bg-light shadow">
@@ -47,12 +54,23 @@
                 <div class="modal-body">
 
                     <ul class="list-group list-group-flush">
-                        <a href="cadAdm.html">
-                            <li class="list-group-item">Cad Adm</li>
+                        <a href="index.php">
+                            <li class="list-group-item">Inicio</li>
                         </a>
-
+                        <a href="cadAdm.php">
+                            <li class="list-group-item">Cad Adiministrador</li>
+                        </a>
+                        <a href="cadAluno.php">
+                            <li class="list-group-item">Cad Aluno</li>
+                        </a>
                         <a href="listAdm.php">
-                            <li class="list-group-item">List Adm</li>
+                            <li class="list-group-item">List Adiministrador</li>
+                        </a>
+                        <a href="listAluno.php">
+                            <li class="list-group-item">List Aluno</li>
+                        </a>
+                        <a href="#">
+                            <li class="list-group-item" onclick="sair()">Log Out</li>
                         </a>
                     </ul>
 
@@ -63,27 +81,32 @@
             </div>
         </div>
     </div>
+    <?php $id = htmlspecialchars($_GET["id"]);
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/EXEMPLO/NEGOCIO/ALUNO/alunoNegocio.php';
+    $aluno = AlunoNegocio::retornaAluno($id);
+    ?>
     <div class="row">
         <form>
+            <input type="hidden" id="idAluno" value="<?php echo $aluno->getId(); ?>">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email </label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Digite seu email</div>
+                <label for="nomeA" class="form-label">Nome </label>
+                <input type="email" class="form-control" id="nomeA" aria-describedby="emailHelp" value="<?php echo $aluno->getNome(); ?>">
+                <div id="emailHelp" class="form-text">Digite o nome do Aluno</div>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="matriculaA" class="form-label">Matricula</label>
+                <input type="text" class="form-control" id="matriculaA" value="<?php echo $aluno->getMatricula(); ?>">
             </div>
         </form>
     </div>
 
-    <button class="btn btn-primary" onclick="salvaAdm()">Cadastrar</button>
+    <button class="btn btn-primary" onclick="atualizaAluno()">Atualizar</button>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="js/utili.js"></script>
-    <script src="js/cadAdm.js"></script>
+    <script src="js/editarAluno.js"></script>
 
 </body>
 
